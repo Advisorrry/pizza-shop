@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const Categories = ({ items, onClickItem }) => {
+export const Categories = ({ items}) => {
     const [activeItem, setActiveItem] = useState(null)
 
     const onSelectItem = (index) => setActiveItem(index)
@@ -8,13 +8,17 @@ export const Categories = ({ items, onClickItem }) => {
     return (
         <div className="categories">
             <ul>
-                <li className={activeItem === null ? 'active' : ''} onClick={() => onSelectItem(null) } >Все</li>
+                <li
+                    className={activeItem === null ? 'active' : ''}
+                    onClick={() => onSelectItem(null)}
+                    
+                    >Все</li>
                 {items.map((name, index) => (
                     <li
-                    onClick={() => onSelectItem(index)}
-                    className={activeItem === index ? 'active' : ''}
-                    key={`${name}_${index}`}>{name}
-                
+                        onClick={() => onSelectItem(index)}
+                        className={activeItem === index ? 'active' : ''}
+                        key={`${name}_${index}`}>
+                        {name}
                     </li>
                 ))}
             </ul>
