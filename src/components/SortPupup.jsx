@@ -16,14 +16,14 @@ export function SortPupup({items}) {
         setVisiblePopup(!visiblePopup)
     }
 
-    const hanbdleOutsideClick = (e) => {
+    const handleOutsideClick = (e) => {
         if(!e.path.includes(sortRef.current)) {
             setVisiblePopup(false)
         }
     }
   
     useEffect(() => {
-        document.body.addEventListener('click', hanbdleOutsideClick)
+        document.body.addEventListener('click', handleOutsideClick)
     })
 
 

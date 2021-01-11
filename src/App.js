@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Route} from 'react-router-dom'
+import {createStore} from 'redux'
 
 import './scss/app.scss'
 
@@ -12,7 +13,7 @@ function App() {
             <div className="wrapper">
                 <Header />
                 <div className="content">
-                    <Route path="/" component={Home} exact />
+                    <Route path="/" render={() => <Home items={pizzas}/>} exact />
                     <Route path="/cart" component={Cart} />
 
                 </div>
