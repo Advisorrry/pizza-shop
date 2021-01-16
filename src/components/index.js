@@ -1,7 +1,7 @@
 import {Button} from './Button'
 import {Header} from './Header'
 import {Categories} from './Categories'
-import {SortPupup} from './SortPupup'
+import {SortPopup} from './SortPopup'
 import {PizzaBlock} from './PizzaBlock'
 
-export {Button, Header, Categories, SortPupup, PizzaBlock}
+export {Button, Header, Categories, SortPopup, PizzaBlock}

@@ -1,13 +1,14 @@
 import React, {useState, useEffect, useRef} from 'react'
 
-export function SortPupup({items}) {
+export const SortPopup = React.memo(function SortPupup({items, onClickItem}) {
     const [visiblePopup, setVisiblePopup] = useState(false) 
     const [activeItem, setActiveItem] = useState(0)
     const sortRef = useRef()
 
-    const activeLavel = items[activeItem]
+    const activeLabel = items[activeItem].name
 
     const onSelectItem = (index) => {
+        onClickItem(index)
         setActiveItem(index)
         setVisiblePopup(false)
     }
@@ -43,16 +44,16 @@ export function SortPupup({items}) {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={toggleVisiblePopup}>{activeLavel}</span>
+                <span onClick={toggleVisiblePopup}>{activeLabel}</span>
             </div>
             {visiblePopup && <div className="sort__popup">
                 <ul>
-                    {items.map((name, index) => (
+                    {items.map((obj, index) => (
                     <li
                         onClick={() => onSelectItem(index)}
                         className={activeItem === index ? 'active' : ''}
-                        key={`${name}_${index}`}>
-                        {name}
+                        key={`${obj.type}_${index}`}>
+                        {obj.name}
                     </li>
                 
                 ))}
@@ -60,4 +61,4 @@ export function SortPupup({items}) {
             </div>}
         </div>
     )
-}
+})

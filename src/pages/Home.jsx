@@ -1,37 +1,44 @@
 import React from 'react'
 import '../scss/app.scss'
-import {Categories, SortPupup, PizzaBlock} from '../components'
+import { Categories, SortPopup, PizzaBlock } from '../components'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCategory } from '../redux/actions/filters'
+import { setSortBy } from './../redux/actions/filters'
 
-export function Home({items}) {
+
+const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
+
+export function Home() {
+    const dispatch = useDispatch()
+    const items = useSelector(({ pizzas }) => pizzas.items)
+
+    const onSelectCategory = React.useCallback(index => {
+        dispatch(setCategory(index))
+    }, [])
+    const onSelectSort = React.useCallback(index => {
+        dispatch(setSortBy(index))
+    }, [])
+    
+
     return (
         <div className="container">
             <div className="content__top">
-                <Categories
+                <Categories onClickItem={onSelectCategory} items={categoryNames} />
+                <SortPopup
+                    onClickItem={onSelectSort}
                     items={[
-                        'Мясные',
-                        'Вегетарианская',
-                        'Гриль',
-                        'Острые',
-                        'Закрытые',
+                        { name: 'популярности', type: 'popular' },
+                        { name: 'цене', type: 'price' },
+                        { name: 'алфавиту', type: 'alphabet' },
                     ]}
-                />
-                <SortPupup
-                    items={['популярности', 'цене', 'алфавиту']}
                 />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-                {
-                    items.map(obj =>
-                        <PizzaBlock
-                            {...obj}
-                            key={obj.id}
-
-                        />)
-                }
+                {items.map((obj) => (
+                    <PizzaBlock {...obj} key={obj.id} />
+                ))}
             </div>
         </div>
     )
 }
-
-
