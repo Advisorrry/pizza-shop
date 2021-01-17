@@ -1,5 +1,3 @@
-
-
 const SET_PIZZAS = 'SET_PIZZAS'
 
 const initialStates = {

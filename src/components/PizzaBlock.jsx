@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import classNames from 'classnames'
+import { MyLoader } from './MyLoader'
 
 export const PizzaBlock = (props) => {
     const types = ['тонкое', 'традиционное']
