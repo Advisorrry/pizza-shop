@@ -1,8 +1,9 @@
 const SET_PIZZAS = 'SET_PIZZAS'
+const SET_lOADED = 'SET_lOADED'
 
 const initialStates = {
     items: [],
-    isLoaded: false
+    isLoaded: false,
 }
 
 const pizzas = (state = initialStates, action) => {
@@ -11,14 +12,16 @@ const pizzas = (state = initialStates, action) => {
             return {
                 ...state,
                 items: action.payload,
-                isLoaded: true
+                isLoaded: true,
+            }
+        case SET_lOADED:
+            return {
+                ...state,            
+                isLoaded: action.payload,
             }
         default:
             return state
     }
-
 }
 
 export default pizzas
-
-
