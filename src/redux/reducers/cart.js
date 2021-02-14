@@ -1,19 +1,28 @@
-const SET_SORT_BY = 'SET_SORT_BY'
+
+const ADD_PIZZA_CART = 'ADD_PIZZA_CART'
 
 const initialStates = {
-    sortBy: 'popular',
-    category: 0
+    items: {},
+    totalPrice: 0,
+    totalCount: 0
 }
 
-export const cart = (state = initialStates, action) => {
+const cart = (state = initialStates, action) => {
     switch (action.type) {
-        case SET_SORT_BY:
+        case ADD_PIZZA_CART:
             return {
                 ...state,
-                sortBy: action.payload
+                items: {
+                    [action.payload.id]: [
+                        ...state.items[action.payload.id],
+                        action.payload
+                    ]
+                }
             }
     }
     return state
 }
+
+export default cart
 
 
